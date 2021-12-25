@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Игра Виселица!</title>
+</head>
+<body>
+<h1 id="main-heading"><center>Игра Виселица!</center></h1>
+
+<b>Буква:</b><br>
+	<input id="id_le" type="text" size="40">
+	<button onClick="test()" >Тест</p>	
+</p>
+
+<script>
+	let a = document.getElementById("id_le");
+    function test() {
+		alert("Введена буква: " + a.value);
+	}
+
+    // Выбираем случайное слово
+    var word = words[Math.floor(Math.random() * words.length)];
+
+    // Устанавливаем массив ответов
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+    }
+
+    var remainingLetters = word.length;
+
+    // ИГРОВОЙ ЦИКЛ
+    while (remainingLetters > 0) {
+// Показываем игроку его проегрсс
+        alert("Угадайте животное:\n" + answerArray.join(" "));
+
+// Получаем варианты ответов от игрока
+        var guess = prompt("Введите букву (только маленькие буквы), или нажми Отмена для завершения игры.");
+        if (guess === null) {
+// Выход из игровог цикла
+            break;
+        } else if (guess.length !== 1) {
+            alert("Пожалуйста введите одну букву");
+        } else {
+// Обновляем состояние игры с помощью измененного параметра guess
+            for (var j = 0; j < word.length; j++) {
+                if (word[j] === guess) {
+                    answerArray[j] = guess;
+                    remainingLetters--;
+                }
+            }
+        }
+
+// КОНЕЦ игрового цикла
+    }
+
+    // Показваем ответ и поздравляем игрока
+
+
+    if (remainingLetters===0) {
+        alert("ОТВЕТ: \n" + answerArray.join(" "));
+        alert("МОЛОДЕЦ! Ответ " + word);
+    }
+    else {
+        alert("Очень ждаль :-(\nДо скорой встречи!");
+    }
+
+</script>
+</body>
+</html>
